@@ -17,8 +17,8 @@ import java.nio.channels.FileChannel;
 public class ExchangeTxtToExcel {
     public static void main(String[] args) throws IOException {
 //        test1();
-        String oriFile = "C:\\Users\\RD\\Desktop\\test.txt";
-        String toExcel = "C:\\Users\\RD\\Desktop\\test.xlsx";
+        String oriFile = "C:\\Users\\RD\\Desktop\\output.txt";
+        String toExcel = "C:\\Users\\RD\\Desktop\\table.xlsx";
         bioReadToExcel(oriFile,toExcel);
 //        test1();
         return;

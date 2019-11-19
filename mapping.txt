@@ -1,0 +1,53 @@
+//检查session
+http://localhost:8080/user/checkSession
+//检查积分
+http://localhost:8080/user/getUserPoint?acct_id=287905
+//登录账号
+http://localhost:8080/user/login
+//分页查询对比的数据，finance_file_transform（待转换文件表）查询moudle = 1 and project_id = fp.id财务报表和所属子项目id，另外有参数就模糊查询，只查询未删除的和已提交的项目，排序类型可选，默认create_time降序，默认第一页，每页10条
+http://localhost:8080/projectManager/list?acct_id=287905
+获取OSS授权token
+http://localhost:8080/getOssSignature
+//查询未提交的项目limit 1
+http://localhost:8080/projectManager/getUnCommitProject
+
+继承WebMvcConfigurerAdapter重写addResourceHandlers添加静态资源路径，重写addInterceptors添加要拦截和要放行的view
+拦截器：return true 
+login：redis存了id，request.session存了user的序列化对象
+checksession：getuser的token不为空，成功
+
+自定义多数据源的配置实体类
+@Configuration
+@MapperScan(basePackages={"com.rongda.ms.checkview.mapper.common"} , sqlSessionFactoryRef="commonSqlSessionFactory")
+
+事务配置readonly会提示mysql优化，没有写操作
+异常拦截
+websocket
+由于websocket的协议与Http协议是不同的，
+ * 所以造成了无法直接拿到session。
+ * 但是问题总是要解决的，不然这个websocket协议所用的场景也就没了
+ * 重写modifyHandshake，HandshakeRequest request可以获取httpSession
+
+由于请求头没有session，要添加一个监听器，将所有的请求都添加一个session
+
+------------------------------------------------------------------------------------------------------------------------------------------
+//对静态资源的配置
+@Override
+public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+   String os = System.getProperty("os.name");
+
+   if (os.toLowerCase().startsWith("win")) {  //如果是Windows系统
+      registry.addResourceHandler("/smallapple/**")
+            // /apple/**表示在磁盘apple目录下的所有资源会被解析为以下的路径
+            .addResourceLocations("file:G:/itemsource/smallapple/") //媒体资源
+            .addResourceLocations("classpath:/META-INF/resources/");  //swagger2页面
+   } else {  //linux 和mac
+      registry.addResourceHandler("/smallapple/**")
+            .addResourceLocations("file:/resources/smallapple/")   //媒体资源
+            .addResourceLocations("classpath:/META-INF/resources/");  //swagger2页面;
+   }
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+门面模式：内部的内容外部不能访问，（将自身传入门面对象，门面对象负责对外开放方法）
+allowCoreThreadTimeOut(true);关闭核心线程
