@@ -34,8 +34,9 @@ public class WordSplit {
 
     ///递归时间复杂度：O(n^n)O(n
     //n
-    // ) 。考虑最坏情况 ss = \text{aaaaaaa}aaaaaaa 。每一个前缀都在字典中，此时回溯树的复杂度会达到 n^nn
+    // ) 。考虑最坏情况 ss = \text{aaaaaaa}aaaaaaa 。每一个前缀都在字典中，此时回溯树的复杂度会达到 n^
     //n
+    //n层递归，每层是for（n-1）次
     //  。
     //空间复杂度：O(n)O(n) 。回溯树的深度最深达到 nn
     public boolean wordBreak1(String s, List<String> wordDict) {
@@ -102,6 +103,7 @@ public class WordSplit {
 
     public boolean wordBreak3(String s, List<String> wordDict) {
         Set<String> wordDictSet=new HashSet(wordDict);
+        //index 位置上能匹配上的元素
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {
