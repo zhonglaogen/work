@@ -4,6 +4,10 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hwpf.model.FibBase;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.Test;
 
 import java.io.*;
 import java.nio.Buffer;
@@ -22,6 +26,29 @@ public class ExchangeTxtToExcel {
         bioReadToExcel(oriFile,toExcel);
 //        test1();
         return;
+    }
+
+    @Test
+    public void changeExcel() throws IOException {
+        File file = new File("D:\\招股书1\\test\\excel");
+        for (File file1 : file.listFiles()){
+//            int i = file1.getName().lastIndexOf("\\");
+//            file.getName().substring(0,i)
+            bioReadToExcel(file1.getAbsolutePath(),file1.getAbsolutePath()+".xlsx");
+        }
+    }
+
+    @Test
+    public void delete(){
+        File file = new File("D:\\招股书1\\test\\excel");
+        for (File file1 : file.listFiles()){
+            if (file1.getName().endsWith("txt")){
+                file1.delete();
+            }
+        }
+
+
+
     }
 
     /**
@@ -53,9 +80,9 @@ public class ExchangeTxtToExcel {
      */
     private static void bioReadToExcel(String oriFile, String toExcel) throws IOException {
         // 创建工作薄
-        HSSFWorkbook workbook = new HSSFWorkbook();
+        XSSFWorkbook workbook = new XSSFWorkbook();
         // 创建工作表
-        HSSFSheet sheet = workbook.createSheet("sheet1");
+        XSSFSheet sheet = workbook.createSheet("sheet1");
 
         FileReader fileReader = new FileReader(new File(oriFile));
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -64,7 +91,7 @@ public class ExchangeTxtToExcel {
         int rowNumber = 0;
         while ((temp = bufferedReader.readLine()) != null) {
             String[] split = temp.split("@");
-            HSSFRow row = sheet.createRow(rowNumber);
+            XSSFRow row = sheet.createRow(rowNumber);
             //写入一行数据
             int length = split.length;
             for (int i = 0; i < length; i++) {

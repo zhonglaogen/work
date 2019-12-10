@@ -1,15 +1,16 @@
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
 import org.junit.Test;
 
 
 import java.io.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -105,6 +106,37 @@ public class Hello implements Serializable {
         };
     }
 
+
+
+    @Test
+    public void test(){
+        BigDecimal t1= new BigDecimal("0.3");
+        BigDecimal t2=new BigDecimal("0.3623");
+        t1.setScale(4,BigDecimal.ROUND_HALF_UP);
+        t2.setScale(4,BigDecimal.ROUND_HALF_UP);
+        BigDecimal subtract = t2.subtract(t1);
+
+        System.out.println(t2.compareTo(t1));
+      String a = "123321的12";
+      String b = "1的2";
+        System.out.println(a.contains(b));
+        System.out.println(LocalDate.now().getYear());
+
+        System.out.println("*******************");
+        HashMap<String, String> h1 = new HashMap<>();
+        System.out.println(h1.get("aaa"));
+
+        List<Integer> l1 = new ArrayList<>();
+        l1.add(1);
+        l1.add(2);
+        l1.add(3);
+        List<Integer> l2 = new ArrayList<>();
+        l2.add(3);
+        l2.add(4);
+        l2.add(5);
+        l1.addAll(l2);
+        System.out.println(l1);
+    }
 
 
 }
