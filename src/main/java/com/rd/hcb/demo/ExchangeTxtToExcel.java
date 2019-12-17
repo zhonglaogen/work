@@ -30,7 +30,7 @@ public class ExchangeTxtToExcel {
 
     @Test
     public void changeExcel() throws IOException {
-        File file = new File("D:\\招股书1\\test\\excel");
+        File file = new File("D:\\招股书1\\test2\\excel");
         for (File file1 : file.listFiles()){
 //            int i = file1.getName().lastIndexOf("\\");
 //            file.getName().substring(0,i)
@@ -40,7 +40,7 @@ public class ExchangeTxtToExcel {
 
     @Test
     public void delete(){
-        File file = new File("D:\\招股书1\\test\\excel");
+        File file = new File("D:\\招股书1\\test2\\excel");
         for (File file1 : file.listFiles()){
             if (file1.getName().endsWith("txt")){
                 file1.delete();

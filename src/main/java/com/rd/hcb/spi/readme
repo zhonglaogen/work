@@ -1,0 +1,17 @@
+https://segmentfault.com/a/1190000020422160?utm_source=tag-newest#item-2
+https://blog.csdn.net/u012385190/article/details/81368172
+哪个WebApp应用调用了spring，spring就去取该应用自己的WebAppClassLoader来加载bean，
+spring的管理方式，如果spring的jar在webapp内，加载的bean只能是自己的webapp使用
+如果spring的jar在share或common内，所有的webapp共享bean
+spring加载bean的方式是线程上下文类加载器加载，默认为（webapplicationcontext），
+
+若果jar在webapp内，线程上下文和加载spring的类加载器为同一个，赋值currentContext，bean不共享
+
+如果不在webapp内，线程上下文和加载的spring的类加载器不是同一个，存入map中k是上下文加载器，v是context，
+一个webapp对应一个记录（context）通过各自的类加载器寻找各自的context，bean共享
+
+寻找context先通过类加载器找map的，找不到就是currentcontext
+
+因为要通过spring来获取bean，但是不同的webapp之间的bean是相互隔离的
+spring在webapp里，这个context就是当前webapp的context
+spring不在webapp里，每个webapp的context是根据各自的类加载器来选择不同的bean的

@@ -103,7 +103,7 @@ public class WordSplit {
 
     public boolean wordBreak3(String s, List<String> wordDict) {
         Set<String> wordDictSet=new HashSet(wordDict);
-        //index 位置上能匹配上的元素
+        //index 位置上能匹配上的元素，到index位置的字符前面是否已经能匹配
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {

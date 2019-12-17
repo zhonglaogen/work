@@ -1,5 +1,7 @@
+package com.rd.hcb.test;
 
-
+import com.rd.hcb.task.entity.ConfigFile;
+import com.rd.hcb.task.entity.PeoPle;
 import org.junit.Test;
 
 
@@ -7,15 +9,18 @@ import java.io.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
 public class Hello implements Serializable {
+
+    static Integer sta = 1;
+
+    static {
+        sta = 11;
+    }
 
 
     public static void main(String[] args) throws IOException {
@@ -136,7 +141,65 @@ public class Hello implements Serializable {
         l2.add(5);
         l1.addAll(l2);
         System.out.println(l1);
+        System.out.println("项目".equals("项目"));
+        String xx= "2014年4.22.";
+        System.out.println(xx.substring(0,4));
+
+        PeoPle p1 = new PeoPle();
+        p1.setId("1");
+        PeoPle p2 = new PeoPle();
+        p2.setId("1");
+        System.out.println(p1.hashCode());
+        System.out.println(p2.hashCode());
+        Integer i1 = null;
+        try {
+            i1 = Integer.valueOf("13o3");
+            int i = 1/0;
+            System.out.println("0000000");
+        }catch (Exception e){
+            System.out.println("捕获");
+        }
+        System.out.println("11111");
+        System.out.println(i1);
+
+
     }
 
+    @Test
+    public void test1() throws IOException {
+        Properties prop = new Properties();
+        prop.load(this.getClass().getResourceAsStream("/test.properties"));
+        String userName = prop.getProperty("NAME");
+        System.out.println(userName);
+        String subIndex = "1010-2020-3030";
+        int i = subIndex.indexOf("-");
+        System.out.println(i);
+        System.out.println(subIndex.substring(0, i));
+        List<PeoPle> ps = new ArrayList<>();
+        ps.add(new PeoPle("1","a"));
+        ps.add(new PeoPle("1","b"));
+        ps.add(new PeoPle("1","c"));
+        Map<String, List<PeoPle>> collect = ps.stream().filter(x -> x.getId().equals("2")).collect(Collectors.groupingBy(y ->{
+            String id = y.getId();
+             id = id + "2";
+             id.substring(0,1);
+             return id;
+                }
+
+        ));
+        System.out.println(collect.size());
+        System.out.println("****************");
+        Thread t1 = new Thread(()->{
+            System.out.println(11);
+            System.out.println(Thread.currentThread().getState());
+        });
+        t1.start();
+
+    }
+
+    @Test
+    public void test11(){
+        System.out.println(sta);
+    }
 
 }

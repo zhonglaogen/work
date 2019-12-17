@@ -1,3 +1,5 @@
+package com.rd.hcb.test;
+
 import com.rd.hcb.math.Test;
 
 import java.util.List;
