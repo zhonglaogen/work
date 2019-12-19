@@ -74,6 +74,9 @@ public class Hello implements Serializable {
 
     }
 
+    /**
+     * 传纸条问题
+     */
     private static void note() {
         int[][] a = {{0, 0, 0, 0}, {0, 0, 3, 9},
                 {0, 2, 8, 5},
@@ -199,6 +202,14 @@ public class Hello implements Serializable {
 
     @Test
     public void test11(){
+        //日志记录
+        //后台计算规则，静态爬取公司信息入库，
+        //申请注册信息，公司信息库查不到，动态去爬取信息，如果爬取到此公司信息动态获取邮箱，会邮件通知此公司
+        //分词，用来对求职信息进行解析
+        //https://www.kanzhun.com/companyl/search/?q=&pagenum=3&ka=paging3
+        //excel的解析和导出，下载模板excel，进行信息的解析
+        //html的解析.excel转换html在线查看
+        //企业信息智能在线计算，计算企业入职离职信息
         System.out.println(sta);
     }
 
