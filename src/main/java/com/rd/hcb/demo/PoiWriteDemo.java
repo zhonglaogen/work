@@ -19,7 +19,7 @@ public class PoiWriteDemo
 {
     public static void main(String[] args) throws IOException
     {
-        // 创建工作薄
+        // 创建工作薄,还有一个xss，对应的是xlsx
         HSSFWorkbook workbook = new HSSFWorkbook();
         // 创建工作表
         HSSFSheet sheet = workbook.createSheet("sheet1");

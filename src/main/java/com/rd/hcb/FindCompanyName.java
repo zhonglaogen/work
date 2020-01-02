@@ -1,76 +1,24 @@
-package com.rd.hcb.task;
+package com.rd.hcb;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.channels.FileChannel;
 import java.util.Map;
 
-import static sun.plugin2.os.windows.FLASHWINFO.size;
-
-public class CompanyName2 {
-
-
-    public static void main(String[] args) {
-        File excelFile = new File("D:\\CompanyName.txt");
-        RandomAccessFile w = null;
-        FileChannel channel;
-        try {
-            //需要写的位置
-            w = new RandomAccessFile(excelFile, "rw");
-            File dir = new File("D:\\dealfile");
-            File[] files = dir.listFiles();
-            int length = files.length;
-            for (int i = 0; i < length; i++) {
-//                getHtmlCompanyName2(files[i], w);
-            }
-        } catch (IOException e) {
-            System.out.println("html 内容提取 异常");
-            e.printStackTrace();
-        } finally {
-            try {
-                w.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-    }
-
-
+/**
+ * @author zlx
+ * @date 2019-12-31 09:51
+ */
+public class FindCompanyName {
     /**
-     * 获取文件
-     */
-    private static File getHtmlFile(File filePath) {
-        //判断是否为文件
-        if (!filePath.isDirectory()) {
-            return filePath;
-        }
-        //寻找此目录的下一级
-        File[] deepPath = filePath.listFiles();
-        if (deepPath != null) {
-            getHtmlFile(deepPath[0]);
-        }
-        //目录下缺失文件
-        return null;
-
-
-    }
-
-
-    /**
+     * 获取公司简称和释义
      * @param doc
-     * @param w
+     * @param res
      * @throws IOException
      */
-    private void getHtmlCompanyName2(Document doc, Map<String, String> res) throws IOException {
+    public void getHtmlCompanyName2(Document doc, Map<String, String> res) throws IOException {
 
 
         //是否包含公司
@@ -173,20 +121,13 @@ public class CompanyName2 {
 
     }
 
+    /**
+     * 将字符串转换为map
+     * @param sb
+     * @param res
+     */
     private void changeToMap(StringBuilder sb, Map<String, String> res) {
         String[] split = sb.toString().split("@");
         res.put(split[0], split[1]);
     }
-
-    private static void copyErrorFile(File htmlFile) throws IOException {
-        //拷贝解析异常文件
-        RandomAccessFile rw = new RandomAccessFile(htmlFile, "rw");
-        FileChannel channel = rw.getChannel();
-        FileOutputStream fo = new FileOutputStream("D:\\error\\" + htmlFile.getName());
-        fo.getChannel().transferFrom(channel, 0, Long.MAX_VALUE);
-        fo.close();
-    }
-
-
 }
-
