@@ -9,7 +9,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- *  Poi写Excel
+ *
+ * hss(xls)和xss（xlsx）两种形式
+ * Poi写Excel
  * @author zlx
  * @date 2019-11-07 17:20
  */
