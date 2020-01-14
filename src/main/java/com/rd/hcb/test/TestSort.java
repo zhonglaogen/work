@@ -21,10 +21,10 @@ public class TestSort {
     }
 
     private int seedSort(int[] arry, int L, int R) {
-        int key = arry[L];
+        int key = arry[R];
         //j指向的永远都是关键字key的位置
         int j = L;
-        for (int i = L; i < R + 1; i++) {
+        for (int i = L; i < R; i++) {
             if (arry[i] < key) {
                 int temp = arry[j];
                 arry[j] = arry[i];
@@ -32,6 +32,9 @@ public class TestSort {
                 j++;
             }
         }
+        int temp = arry[j];
+        arry[j] = arry[R];
+        arry[R] = temp;
         return j;
     }
 
@@ -130,10 +133,10 @@ public class TestSort {
     @Test
     public void result_test() {
         int[] arry = new int[]{3, 1, 3100, 321, 53, 131, 5, 13, 54};
-        int[] arry1 = new int[]{6, 1, 2, 7, 9};
+        int[] arry1 = new int[]{6, 1, 2, 7, 9,3};
         int[] temp = new int[arry1.length];
-//        quick_sort(arry1, 0, arry1.length - 1);
-        sort(arry1,0,arry1.length -1, arry1.length);
+        quickSort(arry1, 0, arry1.length - 1,arry1.length);
+//        sort(arry1,0,arry1.length -1, arry1.length);
         for (int i = 0; i < arry1.length; i++) {
             System.out.print(arry1[i] + "\t");
         }

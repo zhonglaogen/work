@@ -67,10 +67,11 @@ public class Sort {
 
     public static void main(String[] args) {
         int[] arry=new int[]{3,1,3100,321,53,131,5,13,54};
-        int[] temp=new int[arry.length];
-        sort(arry, 0,arry.length-1,temp);
-        for (int i = 0; i < arry.length; i++) {
-            System.out.print(arry[i]+"\t");
+        int[] arry1 = new int[]{6, 1, 7, 9, 2, 3, 3};
+        int[] temp=new int[arry1.length];
+        sort(arry1, 0,arry1.length-1,temp);
+        for (int i = 0; i < arry1.length; i++) {
+            System.out.print(arry1[i]+"\t");
         }
 
     }
