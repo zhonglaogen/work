@@ -1,7 +1,5 @@
 package com.rd.hcb.spi;
 
-import com.rd.hcb.test.Hello;
-
 import java.util.ServiceLoader;
 
 /**

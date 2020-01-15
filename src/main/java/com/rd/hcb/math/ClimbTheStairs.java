@@ -6,7 +6,7 @@ package com.rd.hcb.math;
  */
 
 /**
- * 爬楼梯问题其实质就是斐波那契数列！
+ * 爬楼梯问题其实质就是斐波那契数列！，思想最后一步是1还是2
  */
 public class ClimbTheStairs {
     int total;
@@ -100,6 +100,7 @@ public class ClimbTheStairs {
      * @return
      */
     private static int getStepNum(int n, int m) {
+        //最后一步的思想，取决于最后一步跨几步，将最后一步的所有可能加起来
         int sumStep = 0;
         //总台阶数为0时，终止递归循环,有点动态规划的思想，求出底层的方法次数，向上累加，加上步数为自己当前台阶（也就是1）
         if (n == 0) {

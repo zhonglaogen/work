@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
-public class Hello implements Serializable {
+public class ChuanZhiTiao implements Serializable {
 
     static Integer sta = 1;
 
