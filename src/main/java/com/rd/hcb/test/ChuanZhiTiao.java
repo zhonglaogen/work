@@ -78,11 +78,14 @@ public class ChuanZhiTiao implements Serializable {
      * 传纸条问题
      */
     private static void note() {
-        int[][] a = {{0, 0, 0, 0}, {0, 0, 3, 9},
+        int[][] a = {{0, 0, 0, 0},
+                {0, 0, 3, 9},
                 {0, 2, 8, 5},
                 {0, 5, 7, 0}};
         int n = 3;
         int m = 3;
+//        四个for循环形容的是两条路，两个max比较的是 去的 1 ，2 和回来的 1， 2进行的两两组合
+//        寻找最大值，i代表去的横坐标，j代表去的纵坐标，k代表回来的横坐标，l代表回来的纵坐标
 
         int[][][][] f = new int[9][9][9][9];
         int i, j, k, l;
@@ -92,7 +95,9 @@ public class ChuanZhiTiao implements Serializable {
                     for (l = 1; l <= n; l++) {
                         int x = Math.max(f[i - 1][j][k - 1][l], f[i][j - 1][k][l - 1]);
                         int y = Math.max(f[i - 1][j][k][l - 1], f[i][j - 1][k - 1][l]);
-                        f[i][j][k][l] = Math.max(x, y) + a[i][j];
+
+//                        不做操作，去的路和回来的路一样，不加回来的路，所以值会小不会选
+//                        这里去的路和回来的路任何一个点都不能相同
                         if (i != k && j != l)
                             f[i][j][k][l] += a[k][l];
                     }
