@@ -13,6 +13,7 @@ import java.io.*;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author zlx
@@ -78,7 +79,7 @@ public class ExchangeTxtToExcel {
      * @param toExcel
      * @throws IOException
      */
-    private static void bioReadToExcel(String oriFile, String toExcel) throws IOException {
+    public static void bioReadToExcel(String oriFile, String toExcel) throws IOException {
         // 创建工作薄
         XSSFWorkbook workbook = new XSSFWorkbook();
         // 创建工作表
@@ -90,12 +91,13 @@ public class ExchangeTxtToExcel {
         //行号
         int rowNumber = 0;
         while ((temp = bufferedReader.readLine()) != null) {
-            String[] split = temp.split("@");
+            String[] split = temp.split(" ");
             XSSFRow row = sheet.createRow(rowNumber);
             //写入一行数据
             int length = split.length;
             for (int i = 0; i < length; i++) {
-                row.createCell(i).setCellValue(split[i]);
+//                row.createCell(i).setCellValue(split[i]);
+                row.createCell(i).setCellValue(new String(split[i].getBytes("GB2312"), StandardCharsets.UTF_8));
                 System.out.print(split[i] + "\t");
             }
             rowNumber++;

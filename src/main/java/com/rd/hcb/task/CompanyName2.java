@@ -12,7 +12,6 @@ import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.util.Map;
 
-import static sun.plugin2.os.windows.FLASHWINFO.size;
 
 public class CompanyName2 {
 
