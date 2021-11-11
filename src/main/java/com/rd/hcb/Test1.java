@@ -13,6 +13,7 @@ public class Test1 {
     public static void main(String[] args) {
 
         ReentrantLock r  = new ReentrantLock();
+
         r.lock();
         new Thread(() -> {
             r.lock();
